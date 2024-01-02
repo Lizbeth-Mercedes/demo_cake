@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git  
 # Instalar extensiones intl para cake php
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd intl mysqli pdo
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd intl mysqli pdo 0000000000
 
 # Instalar composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
