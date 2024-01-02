@@ -279,11 +279,24 @@ return [
          * in app_local.php depending on the applications needs.
          */
         'default' => [
-            'className' => Connection::class,
-            'driver' => Mysql::class,
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
+            'host' => 'server-for-mysql.mysql.database.azure.com',
+            'port' => 3306, // Añade esta línea para especificar el puerto
+            'username' => 'admin_mysql',
+            'password' => 'server12345$',
+            'database' => 'mi_app_demo',
+            'encoding' => 'utf8mb4',
             'timezone' => 'UTC',
-
+            'flags' => [],
+            'cacheMetadata' => true,
+            'log' => false,
+            //'url' => env('DATABASE_URL', null),
+            'flags' => [
+              //  PDO::MYSQL_ATTR_SSL_CA => '/path/to/ca.pem',
+                PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+            ],
             /*
              * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support, in CakePHP 3.6
              */
@@ -294,9 +307,7 @@ return [
              * then you MUST use the `flags` config to set your charset encoding.
              * For e.g. `'flags' => [\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4']`
              */
-            'flags' => [],
-            'cacheMetadata' => true,
-            'log' => false,
+            
 
             /*
              * Set identifier quoting to true if you are using reserved words or
@@ -306,7 +317,7 @@ return [
              * decreases performance because each query needs to be traversed and
              * manipulated before being executed.
              */
-            'quoteIdentifiers' => false,
+           
 
             /*
              * During development, if using MySQL < 5.6, uncommenting the
@@ -316,23 +327,11 @@ return [
              * which is the recommended value in production environments
              */
             //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
-        ],
-
+        ]
         /*
          * The test connection is used during the test suite.
          */
-        'test' => [
-            'className' => Connection::class,
-            'driver' => Mysql::class,
-            'persistent' => false,
-            'timezone' => 'UTC',
-            //'encoding' => 'utf8mb4',
-            'flags' => [],
-            'cacheMetadata' => true,
-            'quoteIdentifiers' => false,
-            'log' => false,
-            //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
-        ],
+        
     ],
 
     /*
